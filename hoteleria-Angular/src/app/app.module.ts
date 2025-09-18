@@ -14,6 +14,7 @@ import { AuthInterceptor } from './shared/auth.interceptor';
 import { HabitacionesComponent } from './components/habitaciones/habitaciones.component';
 import { HuespedesComponent } from './components/huespedes/huespedes.component';
 import { ReservasComponent } from './components/reservas/reservas.component';
+import { ErrorInterceptor } from './shared/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { ReservasComponent } from './components/reservas/reservas.component';
     FooterComponent,
     HabitacionesComponent,
     HuespedesComponent,
-    ReservasComponent
+    ReservasComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +37,7 @@ import { ReservasComponent } from './components/reservas/reservas.component';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-    //{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

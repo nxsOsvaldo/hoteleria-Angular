@@ -4,7 +4,7 @@ export interface HabitacionRequest {
   descripcion?: string;
   precio: number;
   capacidad: number;
-  estado: 'Disponible' | 'Ocupada' | 'Limpieza' | 'Mantenimiento';
+  estado: 'DISPONIBLE' | 'OCUPADA' | 'LIMPIEZA' | 'MANTENIMIENTO';
 }
 
 export interface HabitacionResponse {
@@ -14,5 +14,5 @@ export interface HabitacionResponse {
   descripcion?: string;
   precio: number;
   capacidad: number;
-  estado: 'Disponible' | 'Ocupada' | 'Limpieza' | 'Mantenimiento';
+  estado: 'DISPONIBLE' | 'OCUPADA' | 'LIMPIEZA' | 'MANTENIMIENTO';
 }
