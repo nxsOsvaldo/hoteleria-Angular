@@ -99,7 +99,7 @@ export class HabitacionesComponent {
     }
   }
 
-  deleteTipo(habitacionId: number): void{
+  deleteHabitacion(habitacionId: number): void{
     Swal.fire({
       title: 'Estas seguro de eliminar la habitacion?',
       text: 'Eliminar habitacion',
