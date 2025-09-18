@@ -11,6 +11,7 @@ import { FooterComponent } from './components/common/footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './shared/auth.interceptor';
+import { HabitacionesComponent } from './components/habitaciones/habitaciones.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AuthInterceptor } from './shared/auth.interceptor';
     LoginComponent,
     DashboardComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    HabitacionesComponent
   ],
   imports: [
     BrowserModule,

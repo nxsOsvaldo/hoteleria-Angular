@@ -1,0 +1,48 @@
+<div class="container-fluid mt-4">
+  <h2>Habitaciones</h2>
+  <div>
+    <button (click)="toggleForm()" class="btn btn-success">
+      <i class="fa fa-plus"></i>
+      Registrar Habitacion
+    </button>
+  </div>
+    <table class="table table-striped">
+  <thead class="table-dark">
+    <tr style="text-align: center;">
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="text-align: center;" *ngFor="let habitacion of habitaciones; let i=index">
+      <td>{{i+1}}</td>
+      <td hidden>{{habitacion.id}}</td>
+      <td>{{habitacion.numero}}</td>
+      <td>
+        <button class="btn btn-primary btn-sm me-1"(click)="editHabitacion(habitacion)" ><i class="fa fa-edit"></i>Editar</button>
+        <button class="btn btn-danger btn-sm me-1" (click)="deleteHabitacion(habitacion.id)"><i class="fa fa-trash"></i>Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div *ngIf="showForm" class="card mt-4" style="max-width: 600px; margin:auto">
+  <div class="card-header bg-dark text-white text-center">
+    <h5 class="mb-0">{{modalText}}</h5>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="habitacionForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input class="form-control" id="nombre" formControlName="nombre" maxlength="50">
+          </div>
+
+      <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-success px-4" [disabled]="habitacionForm.invalid">
+        Guardar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
