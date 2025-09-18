@@ -1,1 +1,40 @@
-<p>navbar works!</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/dashboard/tipos">Tipos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/dashboard/regiones">Regiones</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/dashboard/movimientos">Movimientos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/dashboard/pokemones">Pokemones</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/dashboard/usuarios" >Usuarios</a>
+      </li>
+    </ul>
+    <div class="d-flex align-items-center">
+            <span class="text-dark me-2 d-flex align-items-center">
+                <i class="fas fa-user me-2"></i>
+                <span *ngIf="username">Hola, {{ username }}!</span>
+            </span>
+            <button class="btn btn-outline-dark btn-sm d-flex align-items-center" (click)="logout()">
+                <i class="fas fa-sign-out-alt me-2"></i>
+                Cerrar sesión
+            </button>
+        </div>
+  </div>
+</nav>

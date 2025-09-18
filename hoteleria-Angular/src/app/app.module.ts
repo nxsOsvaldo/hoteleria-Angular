@@ -12,6 +12,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './shared/auth.interceptor';
 import { HabitacionesComponent } from './components/habitaciones/habitaciones.component';
+import { HuespedesComponent } from './components/huespedes/huespedes.component';
+import { ReservasComponent } from './components/reservas/reservas.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { HabitacionesComponent } from './components/habitaciones/habitaciones.co
     DashboardComponent,
     NavbarComponent,
     FooterComponent,
-    HabitacionesComponent
+    HabitacionesComponent,
+    HuespedesComponent,
+    ReservasComponent
   ],
   imports: [
     BrowserModule,

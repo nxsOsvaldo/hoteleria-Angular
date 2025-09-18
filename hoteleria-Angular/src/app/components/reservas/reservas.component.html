@@ -1,0 +1,118 @@
+<div class="container-fluid mt-4">
+  <h2>Reservas</h2>
+
+  <!-- Botón para mostrar formulario -->
+  <div class="mb-3">
+    <button (click)="toggleForm()" class="btn btn-success">
+      <i class="fa fa-plus"></i> Registrar Reserva
+    </button>
+  </div>
+
+  <!-- Tabla de reservas -->
+  <table class="table table-striped">
+    <thead class="table-dark">
+      <tr class="text-center">
+        <th>#</th>
+        <th>Huésped</th>
+        <th>Habitación</th>
+        <th>Entrada</th>
+        <th>Salida</th>
+        <th>Noches</th>
+        <th>Total</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="text-center" *ngFor="let reserva of reservas; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ reserva.huespedNombre }}</td>
+        <td>#{{ reserva.habitacionNumero }}</td>
+        <td>{{ reserva.fecha_entrada | date:'shortDate' }}</td>
+        <td>{{ reserva.fecha_salida | date:'shortDate' }}</td>
+        <td>{{ reserva.noches }}</td>
+        <td>{{ reserva.total | currency:'MXN' }}</td>
+        <td>{{ reserva.estado }}</td>
+        <td>
+          <button class="btn btn-primary btn-sm me-1" (click)="editReserva(reserva)">
+            <i class="fa fa-edit"></i> Editar
+          </button>
+          <button class="btn btn-danger btn-sm me-1" (click)="deleteReserva(reserva.id)">
+            <i class="fa fa-trash"></i> Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Formulario de reserva -->
+  <div *ngIf="showForm" class="card mt-4" style="max-width: 700px; margin: auto">
+    <div class="card-header bg-dark text-white text-center">
+      <h5 class="mb-0">{{ modalText }}</h5>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="reservaForm" (ngSubmit)="onSubmit()">
+        <!-- Huesped -->
+        <div class="mb-3">
+          <label for="huesped_id" class="form-label">Huésped</label>
+          <select class="form-select" id="huesped_id" formControlName="huesped_id" required>
+            <option value="" disabled selected>Seleccione huésped</option>
+            <option *ngFor="let h of huespedes" [value]="h.id">{{ h.nombre }} {{ h.apellido }}</option>
+          </select>
+        </div>
+
+        <!-- Habitación -->
+        <div class="mb-3">
+          <label for="habitacion_id" class="form-label">Habitación</label>
+          <select class="form-select" id="habitacion_id" formControlName="habitacion_id" required>
+            <option value="" disabled selected>Seleccione habitación</option>
+            <option *ngFor="let hab of habitaciones" [value]="hab.id">#{{ hab.numero }} - {{ hab.tipo }}</option>
+          </select>
+        </div>
+
+        <!-- Fecha entrada -->
+        <div class="mb-3">
+          <label for="fecha_entrada" class="form-label">Fecha de entrada</label>
+          <input type="date" class="form-control" id="fecha_entrada" formControlName="fecha_entrada" required>
+        </div>
+
+        <!-- Fecha salida -->
+        <div class="mb-3">
+          <label for="fecha_salida" class="form-label">Fecha de salida</label>
+          <input type="date" class="form-control" id="fecha_salida" formControlName="fecha_salida" required>
+        </div>
+
+        <!-- Noches -->
+        <div class="mb-3">
+          <label for="noches" class="form-label">Noches</label>
+          <input type="number" class="form-control" id="noches" formControlName="noches" readonly>
+        </div>
+
+        <!-- Total -->
+        <div class="mb-3">
+          <label for="total" class="form-label">Total</label>
+          <input type="number" class="form-control" id="total" formControlName="total" readonly>
+        </div>
+
+        <!-- Estado -->
+        <div class="mb-3">
+          <label for="estado" class="form-label">Estado</label>
+          <select class="form-select" id="estado" formControlName="estado" required>
+            <option value="" disabled selected>Seleccione estado</option>
+            <option value="Confirmada">Confirmada</option>
+            <option value="En curso">En curso</option>
+            <option value="Finalizada">Finalizada</option>
+            <option value="Cancelada">Cancelada</option>
+          </select>
+        </div>
+
+        <!-- Botón Guardar -->
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-success px-4" [disabled]="reservaForm.invalid">
+            Guardar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
