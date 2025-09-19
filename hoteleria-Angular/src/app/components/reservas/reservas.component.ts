@@ -24,6 +24,9 @@ export class ReservasComponent implements OnInit {
   modalText: string = 'Nueva Reserva';
   isEditMode: boolean = false;
   selectedReserva: ReservaResponse | null = null;
+  fechaMinima: string = '';
+
+
 
   constructor(
     private fb: FormBuilder,
@@ -44,6 +47,8 @@ export class ReservasComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const hoy = new Date();
+    this.fechaMinima = hoy.toISOString().split('T')[0];
     this.listarReservas();
     this.listarHuespedes();
     this.listarHabitaciones();

@@ -73,13 +73,13 @@
         <!-- Fecha entrada -->
         <div class="mb-3">
           <label for="fecha_entrada" class="form-label">Fecha de entrada</label>
-          <input type="date" class="form-control" id="fechaEntrada" formControlName="fechaEntrada" required>
+          <input type="date" class="form-control" id="fechaEntrada" formControlName="fechaEntrada" [min]="fechaMinima" (change)="onFechaEntradaChange($event.target.value)" required>
         </div>
 
         <!-- Fecha salida -->
         <div class="mb-3">
           <label for="fecha_salida" class="form-label">Fecha de salida</label>
-          <input type="date" class="form-control" id="fechaSalida" formControlName="fechaSalida" required>
+          <input type="date" class="form-control" id="fechaSalida" formControlName="fechaSalida" [min]="fechaMinima" required>
         </div>
 
         <!-- Estado -->

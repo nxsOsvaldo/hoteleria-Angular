@@ -27,7 +27,7 @@ export class HuespedesComponent {
       nombre: ['', [Validators.required, Validators.maxLength(100)]],
       apellido: ['', [Validators.required, Validators.maxLength(100)]],
       email: ['', [Validators.required, Validators.email, Validators.maxLength(100)]],
-      telefono: ['', [Validators.required, Validators.maxLength(15)]],
+      telefono: ['', [Validators.required, Validators.maxLength(10)]],
       tipoDocumento: ['', [Validators.required, Validators.maxLength(50)]],
       numeroDocumento: ['', [Validators.required, Validators.maxLength(20)]],
       nacionalidad: ['', [Validators.required, Validators.maxLength(50)]]
