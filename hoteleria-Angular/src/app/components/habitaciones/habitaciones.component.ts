@@ -23,7 +23,35 @@ export class HabitacionesComponent {
   constructor(private habitacionesService: HabitacionesService, private formBuilder: FormBuilder){
     this.habitacionForm=this.formBuilder.group({
       id:[null],
-      nombre: ['',[Validators.required,Validators.minLength(1),Validators.maxLength(50)]]
+        numero: [null, [
+    Validators.required,
+    Validators.min(1),
+    Validators.max(9999)
+  ]],
+
+  tipo: ['', [
+    Validators.required,
+    Validators.minLength(3),
+    Validators.maxLength(50)
+  ]],
+
+  descripcion: ['', [
+    Validators.required,
+    Validators.maxLength(255)
+  ]],
+
+  precio: [null, [
+    Validators.required,
+    Validators.min(0)
+  ]],
+
+  capacidad: [null, [
+    Validators.required,
+    Validators.min(1),
+    Validators.max(10)
+  ]],
+
+  estado: ['', Validators.required]
     });
   }
 
@@ -113,7 +141,7 @@ export class HabitacionesComponent {
           this.habitaciones=this.habitaciones.filter(t=>t.id!==habitacionId);
           Swal.fire({
             icon: 'success',
-            title: 'Tipo '+deletedHabitacion.numero +' eliminado',
+            title: 'Habitacion eliminada',
             text: 'La habitacion ha sido eliminada exitosamente'
           })
         }

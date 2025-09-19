@@ -67,7 +67,7 @@
 
         <div class="mb-3">
           <label for="descripcion" class="form-label">Descripción</label>
-          <textarea class="form-control" id="descripcion" formControlName="descripcion" rows="3" maxlength="255"></textarea>
+          <textarea class="form-control" id="descripcion" formControlName="descripcion" required rows="3" maxlength="255"></textarea>
         </div>
 
         <div class="mb-3">
@@ -84,10 +84,10 @@
           <label for="estado" class="form-label">Estado</label>
           <select class="form-select" id="estado" formControlName="estado" required>
             <option value="" disabled selected>Seleccione estado</option>
-            <option value="Disponible">Disponible</option>
-            <option value="Ocupada">Ocupada</option>
-            <option value="Limpieza">Limpieza</option>
-            <option value="Mantenimiento">Mantenimiento</option>
+            <option value="DISPONIBLE">Disponible</option>
+            <option value="OCUPADA">Ocupada</option>
+            <option value="LIMPIEZA">Limpieza</option>
+            <option value="MANTENIMIENTO">Mantenimiento</option>
           </select>
         </div>
         

@@ -29,7 +29,7 @@
         <td>{{ huesped.apellido }}</td>
         <td>{{ huesped.email }}</td>
         <td>{{ huesped.telefono }}</td>
-        <td>{{ huesped.documento }}</td>
+        <td>{{ huesped.tipoDocumento +' '+ huesped.numeroDocumento }}</td>
         <td>{{ huesped.nacionalidad }}</td>
         <td>
           <button class="btn btn-primary btn-sm me-1" (click)="editHuesped(huesped)">
@@ -43,6 +43,7 @@
     </tbody>
   </table>
 
+  <!-- Formulario de huésped -->
   <div *ngIf="showForm" class="card mt-4" style="max-width: 600px; margin: auto">
     <div class="card-header bg-dark text-white text-center">
       <h5 class="mb-0">{{ modalText }}</h5>
@@ -70,8 +71,17 @@
         </div>
 
         <div class="mb-3">
-          <label for="documento" class="form-label">Documento</label>
-          <input type="text" class="form-control" id="documento" formControlName="documento" maxlength="20" required>
+          <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
+          <select class="form-select" id="tipoDocumento" formControlName="tipoDocumento" required>
+            <option value="" disabled selected>Seleccione tipo</option>
+            <option value="INE">INE</option>
+            <option value="Pasaporte">Pasaporte</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="numeroDocumento" class="form-label">Número de Documento</label>
+          <input type="text" class="form-control" id="numeroDocumento" formControlName="numeroDocumento" maxlength="20" required>
         </div>
 
         <div class="mb-3">

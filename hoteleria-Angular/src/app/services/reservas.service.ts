@@ -15,7 +15,7 @@ export class ReservasService {
 
   getReservas(): Observable<ReservaResponse[]> {
     return this.http.get<ReservaResponse[]>(this.apiUrl).pipe(
-      map(reservas => reservas.sort((a, b) => new Date(b.fecha_entrada).getTime() - new Date(a.fecha_entrada).getTime())),
+      map(reservas => reservas.sort((a, b) => new Date(b.fechaEntrada).getTime() - new Date(a.fechaEntrada).getTime())),
       catchError(error => {
         console.error('Error al obtener las reservas', error);
         return of([]);

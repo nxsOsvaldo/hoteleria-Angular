@@ -35,10 +35,8 @@ export class ReservasComponent implements OnInit {
       id: [null],
       huesped_id: [null, Validators.required],
       habitacion_id: [null, Validators.required],
-      fecha_entrada: ['', Validators.required],
-      fecha_salida: ['', Validators.required],
-      noches: [{ value: 0, disabled: true }],
-      total: [{ value: 0, disabled: true }],
+      fechaEntrada: ['', Validators.required],
+      fechaSalida: ['', Validators.required],
       estado: ['', Validators.required]
     });
   }
@@ -52,7 +50,10 @@ export class ReservasComponent implements OnInit {
 
   listarReservas(): void {
     this.reservasService.getReservas().subscribe({
-      next: resp => this.reservas = resp
+      next: resp=>{
+        this.reservas=resp;
+        console.log(this.reservas);
+      }
     });
   }
 
@@ -93,10 +94,10 @@ export class ReservasComponent implements OnInit {
     if (this.reservaForm.valid) {
       const formValue = this.reservaForm.getRawValue();
       const reservaData: ReservaRequest = {
-        huesped_id: formValue.huesped_id,
-        habitacion_id: formValue.habitacion_id,
-        fecha_entrada: formValue.fecha_entrada,
-        fecha_salida: formValue.fecha_salida,
+        huespedId: formValue.huesped_id,
+        habitacionId: formValue.habitacion_id,
+        fechaEntrada: formValue.fechaEntrada,
+        fechaSalida: formValue.fechaSalida,
         noches: formValue.noches,
         total: formValue.total,
         estado: formValue.estado

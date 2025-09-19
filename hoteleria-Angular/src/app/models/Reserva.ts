@@ -1,8 +1,8 @@
 export interface ReservaRequest {
-  huesped_id: number;
-  habitacion_id: number;
-  fecha_entrada: string; // formato ISO: 'YYYY-MM-DD'
-  fecha_salida: string;
+  huespedId: number;
+  habitacionId: number;
+  fechaEntrada: string; // formato ISO: 'YYYY-MM-DD'
+  fechaSalida: string;
   noches: number;
   total: number;
   estado: 'Confirmada' | 'En curso' | 'Finalizada' | 'Cancelada';
@@ -10,10 +10,10 @@ export interface ReservaRequest {
 
 export interface ReservaResponse {
   id: number;
-  huesped_id: number;
-  habitacion_id: number;
-  fecha_entrada: string;
-  fecha_salida: string;
+  huespedId: number;
+  habitacionId: number;
+  fechaEntrada: string;
+  fechaSalida: string;
   noches: number;
   total: number;
   estado: 'Confirmada' | 'En curso' | 'Finalizada' | 'Cancelada';

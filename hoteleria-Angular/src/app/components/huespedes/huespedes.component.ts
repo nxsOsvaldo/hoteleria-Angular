@@ -28,7 +28,8 @@ export class HuespedesComponent {
       apellido: ['', [Validators.required, Validators.maxLength(100)]],
       email: ['', [Validators.required, Validators.email, Validators.maxLength(100)]],
       telefono: ['', [Validators.required, Validators.maxLength(15)]],
-      documento: ['', [Validators.required, Validators.maxLength(20)]],
+      tipoDocumento: ['', [Validators.required, Validators.maxLength(50)]],
+      numeroDocumento: ['', [Validators.required, Validators.maxLength(20)]],
       nacionalidad: ['', [Validators.required, Validators.maxLength(50)]]
     });
   }
@@ -63,7 +64,16 @@ export class HuespedesComponent {
     this.modalText = 'Editando huésped: ' + huesped.nombre + ' ' + huesped.apellido;
     this.isEditMode = true;
     this.selectedHuesped = huesped;
-    this.huespedForm.patchValue({ ...huesped });
+    this.huespedForm.patchValue({
+      id: huesped.id,
+      nombre: huesped.nombre,
+      apellido: huesped.apellido,
+      email: huesped.email,
+      telefono: huesped.telefono,
+      tipoDocumento: huesped.tipoDocumento,
+      numeroDocumento: huesped.numeroDocumento,
+      nacionalidad: huesped.nacionalidad
+    });
   }
 
   onSubmit(): void {
@@ -103,9 +113,10 @@ export class HuespedesComponent {
   }
 
   deleteHuesped(huespedId: number): void {
+    const huesped = this.huespedes.find(h => h.id === huespedId);
     Swal.fire({
       title: '¿Estás seguro de eliminar al huésped?',
-      text: 'Esta acción no se puede deshacer',
+      text: `Eliminar huésped ${huesped?.nombre ?? ''} ${huesped?.apellido ?? ''}`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar',
@@ -113,7 +124,7 @@ export class HuespedesComponent {
     }).then(resp => {
       if (resp.isConfirmed) {
         this.huespedesService.deleteHuesped(huespedId).subscribe({
-          next: deleted => {
+          next: () => {
             this.huespedes = this.huespedes.filter(h => h.id !== huespedId);
             Swal.fire({
               icon: 'success',

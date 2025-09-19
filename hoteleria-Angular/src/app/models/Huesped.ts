@@ -3,8 +3,9 @@ export interface HuespedRequest {
   apellido: string;
   email: string;
   telefono: string;
-  documento: string;
+  numeroDocumento: string;
   nacionalidad: string;
+  tipoDocumento: string;
 }
 
 export interface HuespedResponse {
@@ -13,6 +14,7 @@ export interface HuespedResponse {
   apellido: string;
   email: string;
   telefono: string;
-  documento: string;
+  numeroDocumento: string;
   nacionalidad: string;
+  tipoDocumento: string;
 }
