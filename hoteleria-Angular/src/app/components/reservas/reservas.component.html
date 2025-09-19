@@ -55,7 +55,7 @@
         <!-- Huesped -->
         <div class="mb-3">
           <label for="huesped_id" class="form-label">Huésped</label>
-          <select class="form-select" id="huesped_id" formControlName="huesped_id" required>
+          <select class="form-select" id="huespedId" formControlName="huespedId" required>
             <option value="" disabled selected>Seleccione huésped</option>
             <option *ngFor="let h of huespedes" [value]="h.id">{{ h.nombre }} {{ h.apellido }}</option>
           </select>
@@ -64,7 +64,7 @@
         <!-- Habitación -->
         <div class="mb-3">
           <label for="habitacion_id" class="form-label">Habitación</label>
-          <select class="form-select" id="habitacion_id" formControlName="habitacion_id" required>
+          <select class="form-select" id="habitacionId" formControlName="habitacionId" required>
             <option value="" disabled selected>Seleccione habitación</option>
             <option *ngFor="let hab of habitaciones" [value]="hab.id">#{{ hab.numero }} - {{ hab.tipo }}</option>
           </select>

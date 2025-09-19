@@ -33,11 +33,13 @@ export class ReservasComponent implements OnInit {
   ) {
     this.reservaForm = this.fb.group({
       id: [null],
-      huesped_id: [null, Validators.required],
-      habitacion_id: [null, Validators.required],
+      huespedId: [null, Validators.required],
+      habitacionId: [null, Validators.required],
       fechaEntrada: ['', Validators.required],
       fechaSalida: ['', Validators.required],
-      estado: ['', Validators.required]
+      estado: ['', Validators.required],
+      noches: [{ value: 0, disabled: true }], 
+      total: [{ value: 0, disabled: true }] 
     });
   }
 
@@ -45,7 +47,7 @@ export class ReservasComponent implements OnInit {
     this.listarReservas();
     this.listarHuespedes();
     this.listarHabitaciones();
-    this.setupAutoCalculo();
+    //this.setupAutoCalculo();
   }
 
   listarReservas(): void {
@@ -93,16 +95,30 @@ export class ReservasComponent implements OnInit {
   onSubmit(): void {
     if (this.reservaForm.valid) {
       const formValue = this.reservaForm.getRawValue();
+      const entrada = new Date(formValue.fechaEntrada);
+      const salida = new Date(formValue.fechaSalida);
+      const noches = Math.ceil((salida.getTime() - entrada.getTime()) / (1000 * 60 * 60 * 24));
+
+//       const habitacionId = formValue.habitacionId;
+// const habitacion = this.habitacionesService.getHabitaciones().forEach(h => h.forEach(h2=>h2.id===habitacionId));
+
+// let total = 0;
+// if (habitacion) {
+//   total = noches * habitacion.precio;
+//   formValue.total = total;
+// }
+
+
       const reservaData: ReservaRequest = {
-        huespedId: formValue.huesped_id,
-        habitacionId: formValue.habitacion_id,
+        huespedId: formValue.huespedId,
+        habitacionId: formValue.habitacionId,
         fechaEntrada: formValue.fechaEntrada,
         fechaSalida: formValue.fechaSalida,
-        noches: formValue.noches,
+        noches: noches,
         total: formValue.total,
         estado: formValue.estado
       };
-
+      console.log('Datos enviados:', reservaData);
       if (this.isEditMode && formValue.id) {
         this.reservasService.putReserva(reservaData, formValue.id).subscribe({
           next: reserva => {
@@ -148,9 +164,9 @@ export class ReservasComponent implements OnInit {
 
   setupAutoCalculo(): void {
     this.reservaForm.valueChanges.subscribe(val => {
-      const entrada = new Date(val.fecha_entrada);
-      const salida = new Date(val.fecha_salida);
-      const habitacion = this.habitaciones.find(h => h.id === val.habitacion_id);
+      const entrada = new Date(val.fechaEntrada);
+      const salida = new Date(val.fechaSalida);
+      const habitacion = this.habitaciones.find(h => h.id === val.habitacionId);
 
       if (entrada && salida && salida > entrada && habitacion) {
         const noches = Math.ceil((salida.getTime() - entrada.getTime()) / (1000 * 60 * 60 * 24));
